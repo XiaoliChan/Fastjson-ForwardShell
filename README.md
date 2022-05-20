@@ -6,6 +6,7 @@ Some python script for fastjson
 * [Overview](#overview)
 * [Usage](#usage)
 * [Screenshots](#screenshots)
+* [References](#references)
 
 ## Overview
 
@@ -31,3 +32,7 @@ Some python script for fastjson
   Upload file under internet inaccessible  
   
   ![testaaaa](https://user-images.githubusercontent.com/30458572/169448359-9a4cd8b5-f2fa-4a49-adbb-204b68f87c75.png)
+
+## References
+
+- https://github.com/IppSec/forward-shell
