@@ -12,7 +12,7 @@ Some python script for fastjson
 
 - fastjson-BypassLB.py  
 
-  LB means loading balance, some website has fastjson RCE vulnerability which is handling by Nginx load balancing, also with internet inaccessible (freaking annoy).
+  LB means load balancing, some website has fastjson RCE vulnerability which is handling by Nginx load balancing, also with internet inaccessible (freaking annoy).
 
   (I used it when I joining chinese cyber storm.)
 
