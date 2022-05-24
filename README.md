@@ -1,5 +1,7 @@
 # Fastjson-ForwardShell
-Some python script for fastjson
+Breaking fastjson with forward shell  
+
+### Original repository from: [IppSec's Forward-shell](https://github.com/IppSec/forward-shell)
 
 # Table of content
 
